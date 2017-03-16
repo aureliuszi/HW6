@@ -112,7 +112,7 @@ print("\n\n***** Problem 5 *****")
 programmers=[]
 for item in student_tups_list:
     x=Student(item[0],item[1],item[2])
-    programmers.append(x)
+    programmers.append(x) #NEED LIST COMPREHENSION!!!!
 
 ## [PROBLEM 6]
 print("\n\n***** Problem 6 *****")
