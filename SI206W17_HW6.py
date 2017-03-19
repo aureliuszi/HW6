@@ -109,10 +109,8 @@ print("\n\n***** Problem 5 *****")
 # and save that list in a variable called programmers. You should make sure you pass these tests before continuing, as you'll need this list for problems later on!
 
 #programmers=[x for item in student_tups_list x=Student(item)]
-programmers=[]
-for item in student_tups_list:
-    x=Student(item[0],item[1],item[2])
-    programmers.append(x) #NEED LIST COMPREHENSION!!!!
+programmers=[Student(item[0], item[1], item[2]) for item in student_tups_list]
+
 
 ## [PROBLEM 6]
 print("\n\n***** Problem 6 *****")
@@ -175,30 +173,54 @@ print("\n\n***** Problem 10 *****")
 ## Define a function called readfiles, which accepts a list of filenames as input and
 # yields each line in each of the file with that name, assuming those files exist in the same directory as this program.
 
-## Define a generator called len_check which accepts a generator of file lines and returns a generator object of all the lines it's accepted whose length is longer than 40 characters.
 
-## Finally, write a function called main_filterer that accepts a list of filenames (strings), and returns a generator of all the lines in those files that are longer than 40 characters. The function should invoke the other function and generator, readfiles and len_check.
+
+
+## Define a generator called len_check which accepts a generator of file lines
+# and returns a generator object of all the lines it's accepted whose length is longer than 40 characters.
+
+
+
+
+## Finally, write a function called main_filterer that accepts a list of filenames (strings),
+# and returns a generator of all the lines in those files that are longer than 40 characters.
+# The function should invoke the other function and generator, readfiles and len_check.
+
+
 
 ## There is a test for this but an even more fun test is to uncomment the code below which invokes the main_filterer function and prints each line from the generator without blank lines in between (that's what the comma is doing).
 
 ## The examples here http://anandology.com/python-practice-book/iterators.html in your reading may be very helpful!
 
-## We have provided files samplehw6_1.txt and samplehw6_2.txt for your use for this problem, which hopefully you have downloaded, so you can test with those file names! The test below also relies upon these files. Of course, you could also create other files for testing.
+## We have provided files samplehw6_1.txt and samplehw6_2.txt for your use for this problem, which hopefully you have downloaded,
+# so you can test with those file names! The test below also relies upon these files. Of course, you could also create other files for testing.
 
 # Define readfiles (make sure to close the file reference in the right place)
 
+def readfiles(filenames):
+    for f in filenames:
+        fileref = open(f,'r')
+        for line in fileref:
+            yield line
+        fileref.close()
 
 # Define len_check
-
+def len_check(file_lines):
+    for line in file_lines:
+        if len(line)>40:
+            yield line
 
 # Define main_filterer
 
-
+def main_filterer(lst):
+    return len_check(readfiles(lst))
 
 ## Uncomment this code to test so you can see easily what results from your code. DO uncomment it. DO NOT delete or change it. (You can add other code above while you work, of course.)
-# provided_file_names = ["samplehw6_1.txt","samplehw6_2.txt"]
-# for ln in main_filterer(provided_file_names):
-#     print(ln.rstrip('\n'), end=" ")
+provided_file_names = ["samplehw6_1.txt","samplehw6_2.txt"]
+
+
+for ln in main_filterer(provided_file_names):
+    print(ln.rstrip('\n'), end=" ")
 #####
 
 
