@@ -1,6 +1,6 @@
 import unittest # just in case
 import json # just in case
-from PIL import Image, ImageFilter, ImageColor, ImageFile, ImagePalette, ImageMorph
+from PIL import Image, ImageFilter, ImageColor, ImageFile, ImagePalette, ImageMorph, ImageFilter
 import random
 # tons of options, and OK to add more: http://pillow.readthedocs.io/en/3.4.x/index.html to import directly...
 import glob, os # tools to help you deal with files, in standard library, not necessary
@@ -67,6 +67,7 @@ import glob, os # tools to help you deal with files, in standard library, not ne
 # Define your PhotoAlbum class here:
 
 image_list = ["reddit.png.png", "orchid.jpg.jpg", "funny.jpg.jpg"]
+image_list_too = ["Chrysanthemum.jpg", "Jellyfish.jpg", "Desert.jpg", "Hydrangeas.jpg"]
 
 class PhotoAlbum(list):
 
@@ -105,7 +106,7 @@ class PhotoAlbum(list):
             im = Image.open(item)
             im.rotate(num).show()
 
-    def create_composite(self,n=1,m=2):
+    def create_composite(self,n=0,m=1):
         im1=Image.open(self.filenames[n])
         im2=Image.open(self.filenames[m])
         im1 = im1.crop(box=(100, 200, 300, 500))
@@ -118,14 +119,26 @@ class PhotoAlbum(list):
             im.convert(mode='L', matrix=None, dither=None, palette=0, colors=256).show()
             im.convert(mode='L', matrix=None, dither=None, palette=0, colors=256).save("bw"+item)
 
+    def filter_BLUR(self, num = 0):
+        im1=Image.open(self.filenames[num])
+        im1.filter(ImageFilter.BLUR).show()
+
+    def filter_CONTOUR(self, num = 0):
+        im1 = Image.open(self.filenames[num])
+        im1.filter(ImageFilter.CONTOUR).show()
+
 
 Album1 = PhotoAlbum(image_list)
 #Album1.rotate_45() # rotates and shows each image by 45 degrees
 #Album1.show_image(3) # shows the third image in the album
 #Album1.create_composite() # crops two images and creates a composite. defaults to the second and third image
-Album1.black_and_white() # creates black and white versions of the photos and shows them. will also save them as long as not run in pycharm
+#Album1.black_and_white() # creates black and white versions of the photos and shows them. will also save them as long as not run in pycharm
 #Album1.change_cover_photo(2) # changes order of the images in the album, print(Album1)
 # now produces [funny, orchid, reddit]; print (Album1.cover_photo) now produces funny.jpg.jpg
+#Album1.filter_BLUR(1)
+
+Album2 = PhotoAlbum(image_list_too)
+Album2.filter_CONTOUR() 
 
 
 
