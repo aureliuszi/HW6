@@ -116,13 +116,14 @@ class PhotoAlbum(list):
         for item in self.filenames:
             im = Image.open(item)
             im.convert(mode='L', matrix=None, dither=None, palette=0, colors=256).show()
+            im.convert(mode='L', matrix=None, dither=None, palette=0, colors=256).save("bw"+item)
 
 
 Album1 = PhotoAlbum(image_list)
 #Album1.rotate_45() # rotates and shows each image by 45 degrees
 #Album1.show_image(3) # shows the third image in the album
 #Album1.create_composite() # crops two images and creates a composite. defaults to the second and third image
-#Album1.black_and_white() # creates black and white versions of the photos and shows them
+Album1.black_and_white() # creates black and white versions of the photos and shows them. will also save them as long as not run in pycharm
 #Album1.change_cover_photo(2) # changes order of the images in the album, print(Album1)
 # now produces [funny, orchid, reddit]; print (Album1.cover_photo) now produces funny.jpg.jpg
 
@@ -145,4 +146,5 @@ Album1 = PhotoAlbum(image_list)
 
 # No tests: you decide what it means for your code to work. Make sure your file runs! We won't grade code that does not run.
 
-# And please share the cool images you come up with during the process on Piazza! If someone is curious how you made it happen, share the code and explain!
+# And please share the cool images you come up with during the process on Piazza!
+# If someone is curious how you made it happen, share the code and explain!
