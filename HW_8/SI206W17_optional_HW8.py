@@ -129,16 +129,17 @@ class PhotoAlbum(list):
 
 
 Album1 = PhotoAlbum(image_list)
-#Album1.rotate_45() # rotates and shows each image by 45 degrees
-#Album1.show_image(3) # shows the third image in the album
-#Album1.create_composite() # crops two images and creates a composite. defaults to the second and third image
-#Album1.black_and_white() # creates black and white versions of the photos and shows them. will also save them as long as not run in pycharm
-#Album1.change_cover_photo(2) # changes order of the images in the album, print(Album1)
+Album1.rotate_45() # rotates and shows each image by 45 degrees
+Album1.show_image(3) # shows the third image in the album
+Album1.create_composite() # crops two images and creates a composite. defaults to the second and third image
+Album1.black_and_white() # creates black and white versions of the photos and shows them. will also save them as long as not run in pycharm
+Album1.change_cover_photo(2) # changes order of the images in the album, print(Album1)
 # now produces [funny, orchid, reddit]; print (Album1.cover_photo) now produces funny.jpg.jpg
-#Album1.filter_BLUR(1)
+Album1.filter_BLUR(1)
 
 Album2 = PhotoAlbum(image_list_too)
-Album2.filter_CONTOUR() 
+Album2.filter_CONTOUR() #displays image with contour filter
+Album2.show_random_image() #shows random image from Album2
 
 
 
